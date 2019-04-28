@@ -1,0 +1,1 @@
+import React from 'react';import { GithubServiceConsumer } from '../GithubServiceContext';const withGithubService = () => Wrapped => props => (    <GithubServiceConsumer>        {(githubService) => <Wrapped {...props} githubService={githubService} />}    </GithubServiceConsumer>);export default withGithubService;

@@ -1,12 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+import ErrorBoundary from './components/ErrorBoundary';
+import App from './components/App';
+import store from './store';
+import theme from './theme';
+import { GithubServiceProvider } from './components/GithubServiceContext';
+import GithubService from './services';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const githubService = new GithubService();
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+ReactDOM.render(
+    <Provider store={store}>
+        <MuiThemeProvider theme={theme}>
+            <ErrorBoundary>
+                <GithubServiceProvider value={githubService}>
+                    <Router>
+                        <App />
+                    </Router>
+                </GithubServiceProvider>
+            </ErrorBoundary>
+        </MuiThemeProvider>
+    </Provider>,
+    document.getElementById('root')
+);
