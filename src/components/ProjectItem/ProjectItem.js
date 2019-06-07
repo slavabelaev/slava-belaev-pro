@@ -10,27 +10,49 @@ import Typography from '@material-ui/core/Typography';
 
 const styles = {
     root: {
+        filter: 'brightness(.72)',
+        transition: '.48s',
+        '&:hover': {
+            filter: 'brightness(1)'
+        }
     },
     media: {
         height: 200,
-        backgroundPositionY: 'top',
-        //filter: 'grayscale(100%)',
-        //transition: '.36s',
-        '&:hover': {
-            //filter: 'grayscale(0)'
-        }
+        backgroundPositionY: 'top'
+    },
+    title: {
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap'
     }
 };
 
-const ProjectItem = ({ classes, name, description, html_url, homepage }) => (
-    <Card className={classes.root}>
-        <CardMedia
-            className={classes.media}
-            image={`https://raw.githubusercontent.com/slavabelaev/${name}/master/previews/home.png`}
-        />
+const ProjectItem = ({ className, classes, id, title, demoUrl, sourceUrl, image, images }) => (
+    <Card className={`${className} ${classes.root}`}>
+        <a data-fancybox={id}
+           rel="noopener"
+           aria-label={`${title}`}
+           href={images.length ? images[0].path : image}
+        >
+            <CardMedia
+                className={classes.media}
+                image={image}
+            />
+        </a>
+        <nav>
+            {images.map((image, index) => (!index ? null :
+                <a  key={`image-${id}-${image.path}`}
+                    data-fancybox={id}
+                    data-caption={image.title}
+                    rel="noopener"
+                    aria-label={image.title}
+                    href={image.path}
+                />
+            ))}
+        </nav>
         <CardContent>
-            <Typography component="p">
-                {description}
+            <Typography component="p" className={classes.title}>
+                {title}
             </Typography>
         </CardContent>
         <CardActions>
@@ -38,14 +60,18 @@ const ProjectItem = ({ classes, name, description, html_url, homepage }) => (
                 variant="contained"
                 color="primary"
                 target="_blank"
-                href={homepage}
+                href={demoUrl}
+                rel="noreferrer"
+                aria-label="Demo of Web App"
             >
                 See Demo
             </Button>
             <Button
                 color="primary"
                 target="_blank"
-                href={html_url}
+                href={sourceUrl}
+                rel="noreferrer"
+                aria-label="Source code"
             >
                 Source
             </Button>

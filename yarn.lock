@@ -9814,6 +9814,11 @@ supports-color@^6.0.0, supports-color@^6.1.0:
   dependencies:
     has-flag "^3.0.0"
 
+supports-webp@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/supports-webp/-/supports-webp-2.0.1.tgz#c0b22d9cfe6ea9b9ac7f56363a0aaf9ed9d9e18e"
+  integrity sha512-dSnAw44W4hqeIBb6GwbETzEZoYOjNNmcROUsZWqMjdJd1mpSKxiVMKh59Py/DI2fH/RlojjS1wCYjFBT68Q9zA==
+
 svgo@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/svgo/-/svgo-1.1.1.tgz#12384b03335bcecd85cfa5f4e3375fed671cb985"

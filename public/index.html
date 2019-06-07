@@ -4,22 +4,76 @@
     <meta charset="utf-8" />
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <title>React App</title>
+    <meta name="theme-color" content="#212121" />
+    <meta name="keywords" content="HTML5,CSS3,SCSS,Angular,Vue,Bootstrap 4+,Material Design,PSD to HTML,Sketch to HTML,Gulp.js,Grunt.js,Parcel,Git,GitHub,BitBucket,Firebase,Laravel,Docker,Wordpress">
+    <meta name="description" content="I am an experienced web developer. Basically I'm focused in Front-End. I write a clean and understandable code based on BEM methodology which can be easily keeped. I follow advanced web development technologies and actively implement them in my work.">
+    <meta name="subject" content="Frontend Development">
+    <meta name="copyright"content="Slava Belaev">
+    <meta name="language" content="EN">
+    <meta name="Classification" content="Business">
+    <meta name="author" content="Slava Belaev, slav@belaev.pro">
+    <meta name="designer" content="Material Design, Slava Belaev">
+    <meta name="reply-to" content="slav@belaev.pro">
+    <meta name="owner" content="slav@belaev.pro">
+    <meta name="category" content="Frontend Development">
+    <meta name="coverage" content="Worldwide">
+    <meta name="distribution" content="Global">
+
+    <title>Slava Belaev — Frontend Developer / Portfolio</title>
     <style>
       html, body {
         padding: 0;
         margin: 0;
         background-color: #424242;
+        font-family: 'Roboto', Arial, sans-serif;
       }
       ::-webkit-scrollbar { width: 12px }
       ::-webkit-scrollbar-track { background: #fff }
       ::-webkit-scrollbar-thumb { background: #212121 }
+
+
+      @keyframes opacity {
+        0%   { opacity: 0; }
+        100% { opacity: 1; }
+      }
+
+      @-webkit-keyframes opacity {
+        0%   { opacity: 0; }
+        100% { opacity: 1; }
+      }
+
+      ul > li > div {
+        animation-name: opacity;
+        animation-duration: 3s;
+      }
     </style>
+
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+    </noscript>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+      (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+      (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym")
+
+      ym(51451543, "init", {
+        id:51451543,
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true
+      });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/51451543" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js" defer></script>
   </body>
 </html>
