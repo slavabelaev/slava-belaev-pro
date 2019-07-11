@@ -115,7 +115,7 @@ const Header = ({ classes, width }) => (
                 <IconButton
                     className={classes.avatarButton}
                     target="_blank"
-                    href="https://www.instagram.com/slava_belaev/"
+                    href="https://www.instagram.com/slavabelaev/"
                     rel="noreferrer"
                     aria-haspopup="true"
                 >
