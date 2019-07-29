@@ -27,26 +27,24 @@ const styles = {
     }
 };
 
-const ProjectItem = ({ className, classes, id, title, demoUrl, sourceUrl, image, images }) => (
+const ProjectItem = ({ className, classes, id, title, demoUrl, sourceUrl, previews }) => (
     <Card className={`${className} ${classes.root}`}>
         <a data-fancybox={id}
            rel="noopener"
            aria-label={`${title}`}
-           href={images.length ? images[0].path : image}
+           href={previews ? previews[0] : null}
         >
             <CardMedia
                 className={classes.media}
-                image={image}
+                image={previews ? previews[0] : null}
             />
         </a>
         <nav>
-            {images.map((image, index) => (!index ? null :
-                <a  key={`image-${id}-${image.path}`}
+            {(previews || []).map((imageUrl, index) => ( index === 0 ? null :
+                <a  key={`image-${id}-${imageUrl}`}
                     data-fancybox={id}
-                    data-caption={image.title}
                     rel="noopener"
-                    aria-label={image.title}
-                    href={image.path}
+                    href={imageUrl}
                 />
             ))}
         </nav>

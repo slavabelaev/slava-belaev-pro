@@ -10,9 +10,31 @@ class GithubService {
             .then(response => response.json());
     }
 
-    getProjectInfo(projectName) {
-        return fetch(`${this.userContentApiUrl}/${this.username}/${projectName}/master/package.json?client_id=${this.clientId}&client_secret=${this.clientSecret}`)
-            .then(response => response.json());
+    getProjectPreviews(projectName) {
+        const imageBaseUrl = `${this.userContentApiUrl}/${this.username}/${projectName}/master/previews/`;
+        return fetch(`${this.apiUrl}/repos/${this.username}/${projectName}/contents/previews`)
+            .then(response => response.json())
+            .then(files => {
+                const fileNames = [];
+                const images = [];
+
+                files.forEach(file => {
+                    let isFolder = !file.name.includes('.');
+
+                    if (isFolder) return true;
+
+                    const fileName = file.name.match(/.*?(?=\.)/)[0];
+                    if (!fileNames.includes(fileName)) {
+                        fileNames.push(fileName);
+
+                        (fileName === 'index' || fileName === 'home' || fileName === 'start') ?
+                            images.unshift(file.name) :
+                            images.push(file.name);
+                    }
+                });
+
+                return images.map(image => imageBaseUrl + image);
+            });
     }
 
 }

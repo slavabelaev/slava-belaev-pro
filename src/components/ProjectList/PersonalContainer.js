@@ -1,36 +1,36 @@
 import React from 'react';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
+import { compose } from "redux";
 import ProjectList from './ProjectList';
 import withGithubService from '../hoc/withGithubService';
-import { projectsRequested, projectsLoaded, projectsFetchError } from "../../actions";
+//import CircularProgress from "@material-ui/core/es/CircularProgress/CircularProgress";
 
 class ProjectListContainer extends React.Component {
-    componentWillMount() {
-        const { githubService, projectsRequested, projectsLoaded, projectsFetchError } = this.props;
 
-        projectsRequested()
+    state = {
+        projects: null,
+        loaded: false,
+        hasError: false
+    };
+
+    componentDidMount() {
+        const { githubService } = this.props;
+
         githubService.getProjects()
-            .then(projects => projectsLoaded(projects))
-            .catch(error => projectsFetchError(error));
+            .then(projects => this.setState({ projects, loaded: true }))
+            .catch(error => this.setState({ hasError: true }));
     }
 
     render() {
-        return <ProjectList projects={this.props.projects.items} />
+        const { hasError, projects, loaded } = this.state;
+
+        if (hasError) return <div>An error has occurred</div>;
+
+        if (!loaded) return null;
+
+        return <ProjectList projects={projects} />
     }
 }
 
-const mapStateToProps = state => ({
-    projects: state.projects
-});
-
-const mapDispatchToProps = {
-    projectsRequested,
-    projectsLoaded,
-    projectsFetchError
-};
-
 export default compose(
     withGithubService(),
-    connect(mapStateToProps, mapDispatchToProps)
 )(ProjectListContainer)
