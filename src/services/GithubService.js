@@ -7,7 +7,13 @@ class GithubService {
 
     getProjects() {
         return fetch(`${this.apiUrl}/users/${this.username}/repos?client_id=${this.clientId}&client_secret=${this.clientSecret}`)
-            .then(response => response.json());
+            .then(response => response.json())
+            .then(projects => {
+                return !projects ? null : projects.sort(
+                    (a, b) => new Date(a['created_at']) - new Date(b['created_at'])
+                )
+                .reverse();
+            });
     }
 
     getProjectPreviews(projectName) {
