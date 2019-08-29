@@ -1,4 +1,5 @@
 import React from 'react';
+import { compose } from 'redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -6,9 +7,13 @@ import CardActions from '@material-ui/core/CardActions';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
+import ImportantDevicesIcon from '@material-ui/icons/ImportantDevices';
 
-const styles = {
+
+const styles = theme => ({
     root: {
         filter: 'brightness(.72)',
         transition: '.48s',
@@ -24,10 +29,16 @@ const styles = {
       overflow: 'hidden',
       textOverflow: 'ellipsis',
       whiteSpace: 'nowrap'
+    },
+    adaptabilityButton: {
+        marginLeft: 'auto',
+        [theme.breakpoints.down('xs')]: {
+            display: 'none',
+        },
     }
-};
+});
 
-const ProjectItem = ({ className, classes, id, title, demoUrl, sourceUrl, previews }) => (
+const ProjectItem = ({ className, classes, id, title, demoUrl, sourceUrl, previews, onShowDemo}) => (
     <Card className={`${className} ${classes.root}`}>
         <a data-fancybox={id}
            rel="noopener"
@@ -62,7 +73,7 @@ const ProjectItem = ({ className, classes, id, title, demoUrl, sourceUrl, previe
                 rel="noreferrer"
                 aria-label="Demo of Web App"
             >
-                See Demo
+                Demo
             </Button>
             <Button
                 color="primary"
@@ -73,6 +84,11 @@ const ProjectItem = ({ className, classes, id, title, demoUrl, sourceUrl, previe
             >
                 Source
             </Button>
+            <Tooltip title='Show Adaptability' placement='left'>
+                <IconButton onClick={onShowDemo} className={classes.adaptabilityButton}>
+                    <ImportantDevicesIcon />
+                </IconButton>
+            </Tooltip>
         </CardActions>
     </Card>
 );
@@ -81,4 +97,6 @@ ProjectItem.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ProjectItem);
+export default compose(
+    withStyles(styles)
+)(ProjectItem);

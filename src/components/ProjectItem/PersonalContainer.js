@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import { compose } from 'redux';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import ProjectItem from './ProjectItem';
 import withGithubService from '../hoc/withGithubService';
 
@@ -20,7 +19,7 @@ class ProjectItemContainer extends React.Component {
     }
 
     render() {
-        const { id, description, html_url, homepage } = this.props;
+        const { id, description, html_url, homepage, onShowDemo } = this.props;
         const { previews } = this.state;
 
         return (
@@ -31,6 +30,7 @@ class ProjectItemContainer extends React.Component {
                     demoUrl={homepage}
                     sourceUrl={html_url}
                     previews={previews}
+                    onShowDemo={onShowDemo}
                 />
             </Fragment>
         );
