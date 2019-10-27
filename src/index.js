@@ -9,8 +9,7 @@ import { GithubServiceProvider } from './components/GithubServiceContext';
 import GithubService from './services';
 
 const githubService = new GithubService();
-
-ReactDOM.render(
+const Root = () => (
     <MuiThemeProvider theme={theme}>
         <ErrorBoundary>
             <GithubServiceProvider value={githubService}>
@@ -19,6 +18,12 @@ ReactDOM.render(
                 </Router>
             </GithubServiceProvider>
         </ErrorBoundary>
-    </MuiThemeProvider>,
-    document.getElementById('root')
+    </MuiThemeProvider>
 );
+const rootElement = document.getElementById("root");
+
+if (rootElement.hasChildNodes()) {
+  ReactDOM.hydrate(<Root />, rootElement);
+} else {
+  ReactDOM.render(<Root />, rootElement);
+}
