@@ -1,14 +1,13 @@
-FROM node:10
+FROM node:10-alpine
 
-# Create app directory
 WORKDIR /usr/src/app
 
-RUN npm install -g serve
-# If you are building your code for production
-# RUN npm ci --only=production
+COPY . .
 
-# Bundle app source
-COPY build build
+RUN npm install
+RUN npm run build
+RUN npm install -g serve
 
 EXPOSE 80
+
 CMD ["serve", "-s", "build", "-l", "80"]

@@ -21,9 +21,10 @@ const Root = () => (
     </MuiThemeProvider>
 );
 const rootElement = document.getElementById("root");
+ReactDOM.render(<Root />, rootElement);
 
-if (rootElement.hasChildNodes()) {
-  ReactDOM.hydrate(<Root />, rootElement);
-} else {
-  ReactDOM.render(<Root />, rootElement);
-}
+// if (rootElement.hasChildNodes()) {
+//   ReactDOM.hydrate(<Root />, rootElement);
+// } else {
+//   ReactDOM.render(<Root />, rootElement);
+// }
